@@ -16,14 +16,16 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.vcs-type="Git" \
     org.label-schema.schema-version="1.0"
 
-RUN apk add apache2 apache2-utils php8-apache2 php8-sqlite3 php8-json php8-pdo php8-pdo_sqlite php8-curl php8-gd php8-mbstring imagemagick php8-xml php8-simplexml php8-session php8-mysqli php8-pdo_mysql php8-dom php8-fileinfo
+RUN apk add apache2 apache2-utils imagemagick php82-apache2 php82-sqlite3 php82-json php82-pdo php82-pdo_sqlite \
+    php82-curl php82-gd php82-mbstring php82-xml php82-simplexml php82-session php82-mysqli php82-pdo_mysql php82-dom \
+    php82-fileinfo
 COPY rompr.conf /etc/apache2/conf.d
 COPY run.sh /run.sh
 
 ARG ZIP_FILE=rompr-$ROMPR_VERSION.zip
 ARG FETCH_URL=https://github.com/fatg3erman/RompR/releases/download/$ROMPR_VERSION/$ZIP_FILE
 ADD $FETCH_URL /
-RUN unzip $ZIP_FILE}&& \
+RUN unzip $ZIP_FILE && \
     mkdir -p /rompr/prefs /rompr/albumart && \
     chown -R root:root /rompr && \
     chown apache:apache /rompr/prefs /rompr/albumart
