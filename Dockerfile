@@ -19,6 +19,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN apk add apache2 apache2-utils imagemagick php82-apache2 php82-sqlite3 php82-json php82-pdo php82-pdo_sqlite \
     php82-curl php82-gd php82-mbstring php82-xml php82-simplexml php82-session php82-mysqli php82-pdo_mysql php82-dom \
     php82-fileinfo gcompat
+
 COPY rompr.conf /etc/apache2/conf.d
 COPY run.sh /run.sh
 
